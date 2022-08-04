@@ -4,12 +4,13 @@ import {styles} from './styles';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
+  enabled: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({title, ...rest}) => {
+const Button: React.FC<ButtonProps> = ({enabled, title, ...rest}) => {
   return (
-    <TouchableOpacity {...rest} style={styles.button}>
-      <Text style={styles.buttonText}>{title}</Text>
+    <TouchableOpacity {...rest} style={enabled ? styles.button : [styles.button, {opacity: 0.7}]}>
+      <Text style={enabled ? styles.buttonText : [styles.buttonText, {opacity: 0.7}]}>{title}</Text>
     </TouchableOpacity>
   );
 };

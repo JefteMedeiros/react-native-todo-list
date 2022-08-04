@@ -13,10 +13,13 @@ export interface TaskData {
   expire_date: Date;
 }
 
+//Db connection
+db;
+
 export const Home = () => {
   useEffect(() => {
-    db;
     createTable();
+    handleRetrieveTasks();
   }, []);
 
   const [newTask, setNewTask] = useState('');
@@ -78,8 +81,17 @@ export const Home = () => {
     });
   };
 
-  const handleRemoveTask = (id: number) => {
-    setMyTasks(oldState => oldState.filter(item => item.id !== id));
+  const handleDeleteTask = (id: string) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'DELETE FROM Tasks WHERE task_id=(?)',
+        [id],
+        () => {
+          handleRetrieveTasks();
+        },
+        error => console.log('Error deleting! ' + error.message),
+      );
+    });
   };
 
   useEffect(() => {
@@ -101,6 +113,7 @@ export const Home = () => {
       <Input setNewSkill={setNewTask} />
 
       <Button
+        enabled={!!newTask && true}
         title={'Adicionar'}
         activeOpacity={0.7}
         onPress={handleAddNewTask}
@@ -117,11 +130,12 @@ export const Home = () => {
 
       <FlatList
         data={myTasks}
-        keyExtractor={item => item.task}
+        keyExtractor={item => item.task_id}
         renderItem={({item}) => (
           <TaskCard
+            id={item.task_id}
             date={item.expire_date}
-            handleRemoveTask={handleRemoveTask}
+            handleRemoveTask={() => handleDeleteTask(item.task_id)}
             task={item.task}
           />
         )}

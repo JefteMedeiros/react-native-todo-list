@@ -11,7 +11,8 @@ import {ptBR} from 'date-fns/locale';
 
 interface TaskCardProps extends TouchableOpacityProps {
   task: string;
-  handleRemoveTask: (id: number) => void;
+  id: string;
+  handleRemoveTask: (id: string) => void;
   date: Date;
 }
 
@@ -19,6 +20,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   task,
   handleRemoveTask,
   date,
+  id
 }) => {
   const [dateCheck, setDateCheck] = useState(false);
 
@@ -41,7 +43,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
         <Text style={styles.taskText}>{formattedDate.toString()}</Text>
       </View>
       <TouchableOpacity
-        onPress={() => console.log("batatinha")}
+        onPress={() => handleRemoveTask(id)}
         activeOpacity={0.7}>
         <Text style={styles.buttonClose}>X</Text>
       </TouchableOpacity>

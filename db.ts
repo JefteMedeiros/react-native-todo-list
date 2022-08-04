@@ -6,9 +6,7 @@ export const db = SQLite.openDatabase(
     name: 'task_db',
     location: 'default',
   },
-  () => {
-    console.log("funcionou")
-  },
+  () => {},
   error => {
     console.log('Error while creating database! ' + error);
   },
@@ -20,12 +18,11 @@ export const createTable = () => {
     tx.executeSql(
       'CREATE TABLE IF NOT EXISTS Tasks (ID INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT, task_id TEXT, expire_date TEXT)',
       [],
-      () => {
-        console.log("Criou!")
-      },
+      () => {},
       error => {
         console.log('Error creating table! ' + error.message);
       },
     );
   });
 };
+

@@ -24,6 +24,7 @@ const DatePickerComponent: React.FC<DatePickerProps> = ({
       <DatePicker
         androidVariant={'iosClone'}
         modal
+        minimumDate={new Date()}
         mode={'date'}
         open={open}
         date={date}
