@@ -1,0 +1,42 @@
+{
+  "name": "rntodolist",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+  },
+  "dependencies": {
+    "@types/react-native-sqlite-storage": "^5.0.2",
+    "date-fns": "^2.29.1",
+    "react": "18.0.0",
+    "react-native": "0.69.2",
+    "react-native-date-picker": "^4.2.5",
+    "react-native-elements": "^3.4.2",
+    "react-native-sqlite-storage": "^6.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@tsconfig/react-native": "^2.0.2",
+    "@types/react-native": "^0.69.3",
+    "@types/react-test-renderer": "^18.0.0",
+    "metro-react-native-babel-preset": "^0.70.3",
+    "typescript": "^4.4.4"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
